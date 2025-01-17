@@ -1,0 +1,39 @@
+/*
+ * app.c
+ *
+ *  Created on: Jan 16, 2025
+ *      Author: ch.lee
+ */
+#include "app.h"
+
+extern UART_HandleTypeDef huart2;
+
+int cycle300ms;
+int cycle380ms;
+
+
+//interrupt에 의하여 1ms마다 호출됨
+void SystickCallback(){
+
+}
+
+
+//main
+void app(){
+	int count=0;
+	_Bool curSwitch, oldSwitch;
+	//uart 장치 초기화
+	initUart(&huart2);
+	while(1){
+		curSwitch = HAL_GPIO_ReadPin(SW_GPIO_Port, SW_Pin);
+		if(curSwitch != oldSwitch){
+			if(curSwitch == 0){
+				count++;
+				printf("count = %d\n", count);
+			}
+		}
+
+
+	}
+}
+

@@ -1,0 +1,35 @@
+/*
+ * app.c
+ *
+ *  Created on: Jan 16, 2025
+ *      Author: ch.lee
+ */
+#include "app.h"
+#include <string.h>
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+
+
+extern UART_HandleTypeDef huart2;
+
+void app(){
+	// uart 장치 초기화
+	initUart(&huart2);
+	while(1){
+		static bool isRun = true;
+		static int angle=0;
+		if(isRun) angle++;
+		angle%=360;
+		int sinv = sin(angle*M_PI/180)*100+100;
+		int cosv = cos(angle*M_PI/180)*100+100;
+		printf("%d, %d\n", sinv, cosv);
+		// uart에서 키 입력
+		char ch = getUart();
+		if(ch!=0){
+			if(ch == 'g') isRun = true;
+			if(ch == 's') isRun = false;
+		}
+		HAL_Delay(50);
+	}
+}

@@ -1,0 +1,14 @@
+/*
+ * app.c
+ *
+ *  Created on: Jan 16, 2025
+ *      Author: ch.lee
+ */
+#include "app.h"
+
+extern UART_HandleTypeDef huart2;
+
+void SystickCallback(){
+
+}
+

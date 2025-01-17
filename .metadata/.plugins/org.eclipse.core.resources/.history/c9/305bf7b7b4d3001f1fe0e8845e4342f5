@@ -1,0 +1,18 @@
+/*
+ * app.c
+ *
+ *  Created on: Jan 16, 2025
+ *      Author: ch.lee
+ */
+#include "app.h"
+#include <string.h>
+
+extern UART_HandleTypeDef huart2;
+
+void app(){
+	char str[]={"Hello world\r\n"};
+
+	HAL_UART_Transmit(&huart2, (uint_8t*)str, strlen(str), 5);
+	HAL_Delay(1000);
+
+}

@@ -1,0 +1,16 @@
+/*
+ * uart.h
+ *
+ *  Created on: Jan 16, 2025
+ *      Author: ch.lee
+ */
+
+#ifndef INC_UART_H_
+#define INC_UART_H_
+
+#include "main.h"
+
+//Prototype 선언
+void initUart();
+
+#endif /* INC_UART_H_ */

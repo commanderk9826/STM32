@@ -1,0 +1,26 @@
+/*
+ * app.c
+ *
+ *  Created on: Jan 16, 2025
+ *      Author: ch.lee
+ */
+#include "app.h"
+#include <string.h>
+#include <stdio.h>
+#include <math.h>
+#include <stdbool.h>
+
+
+extern UART_HandleTypeDef huart2;
+
+void app(){
+	static bool
+	static int angle=0;
+	angle++;
+	angle%=360;
+	int sinv = sin(angle*M_PI/180)*100+100;
+	int cosv = cos(angle*M_PI/180)*100+100;
+	printf("%d, %d\n", sinv, cosv);
+	HAL_Delay(50);
+
+}
