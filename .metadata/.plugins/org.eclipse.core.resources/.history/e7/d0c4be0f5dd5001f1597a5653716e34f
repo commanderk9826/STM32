@@ -1,0 +1,15 @@
+/*
+ * app.c
+ *
+ *  Created on: Jan 16, 2025
+ *      Author: ch.lee
+ */
+
+#include "app.h"
+
+//장치 선언
+extern TIM_HandleTypeDef htim1;
+
+void app(){
+
+}

@@ -1,0 +1,16 @@
+/*
+ * ultrasonic.h
+ *
+ *  Created on: Jan 18, 2025
+ *      Author: ch.lee
+ */
+
+#ifndef INC_ULTRASONIC_H_
+#define INC_ULTRASONIC_H_
+
+#include "main.h"
+
+//prototype define
+void initUltrasonic(TIM_HandleTypeDef *inHtim);
+
+#endif /* INC_ULTRASONIC_H_ */
