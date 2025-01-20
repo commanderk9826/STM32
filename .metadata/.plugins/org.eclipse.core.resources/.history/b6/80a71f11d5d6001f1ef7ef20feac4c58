@@ -1,0 +1,18 @@
+/*
+ * ultrasonic.h
+ *
+ *  Created on: Jan 18, 2025
+ *      Author: ch.lee
+ */
+
+#ifndef INC_ULTRASONIC_H_
+#define INC_ULTRASONIC_H_
+
+#include "main.h"
+
+//prototype define
+void initUltrasonic();
+
+uint8_t getDistance();
+
+#endif /* INC_ULTRASONIC_H_ */

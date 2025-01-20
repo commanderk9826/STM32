@@ -33,6 +33,7 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "app.h"
 #include "uart.h"
+#include "ultrasonic.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -60,12 +61,12 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define Trigger_Pin GPIO_PIN_5
+#define Trigger_GPIO_Port GPIOA
 #define ECHO_Pin GPIO_PIN_6
 #define ECHO_GPIO_Port GPIOA
 #define Buzzer_Pin GPIO_PIN_8
 #define Buzzer_GPIO_Port GPIOA
-#define Trigger_Pin GPIO_PIN_9
-#define Trigger_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 

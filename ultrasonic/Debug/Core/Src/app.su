@@ -1,0 +1,4 @@
+../Core/Src/app.c:19:6:delay_us	16	static
+../Core/Src/app.c:24:6:setSound	16	static
+../Core/Src/app.c:30:6:stopSound	4	static
+../Core/Src/app.c:34:6:app	16	static
