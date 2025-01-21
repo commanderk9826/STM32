@@ -1,0 +1,10 @@
+16:23:25 **** Incremental Build of configuration Debug for project ultrasonicRadar ****
+make -j7 all 
+arm-none-eabi-size  ultrasonicRadar.elf 
+   text	   data	    bss	    dec	    hex	filename
+  25316	    104	   2376	  27796	   6c94	ultrasonicRadar.elf
+Finished building: default.size.stdout
+ 
+
+16:23:25 Build Finished. 0 errors, 0 warnings. (took 188ms)
+

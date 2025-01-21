@@ -1,0 +1,20 @@
+/*
+ * uart.h
+ *
+ *  Created on: Jan 16, 2025
+ *      Author: ch.lee
+ */
+
+#ifndef INC_APP_H_
+#define INC_APP_H_
+
+#include "main.h"
+#include "uart.h"
+#include "ultrasonic.h"
+
+//함수의 프로토타입 선언
+void app();
+void SystickCallback();
+void delay_us(uint16_t time);
+
+#endif /* INC_APP_H_ */

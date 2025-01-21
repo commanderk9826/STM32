@@ -1,0 +1,10 @@
+16:35:51 **** Incremental Build of configuration Debug for project cdsSensor ****
+make -j7 all 
+arm-none-eabi-size  cdsSensor.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14792	    104	   2056	  16952	   4238	cdsSensor.elf
+Finished building: default.size.stdout
+ 
+
+16:35:51 Build Finished. 0 errors, 0 warnings. (took 209ms)
+
