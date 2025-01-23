@@ -1,0 +1,57 @@
+/*
+ * app.c
+ *
+ *  Created on: Jan 16, 2025
+ *      Author: ch.lee
+ */
+
+#include "app.h"
+
+//외부 장치 선언
+extern ADC_HandleTypeDef hadc1;
+extern UART_HandleTypeDef huart2;
+extern TIM_HandleTypeDef htim3;
+uint16_t adcValue[2];
+uint16_t adcDone = 0;
+char str[50];
+
+uint16_t movingMean(uint16_t inValue){
+	const uint16_t max =100;
+	static uint16_t buffer[100] = {0,};
+	static uint32_t sum = 0;
+	static uint16_t pos = 0;
+	static _Bool isFirst = 1;
+
+	if(isFirst){
+		isFirst = 0;
+	}
+
+	sum -=buffer[pos];
+	buffer[pos] = inValue;
+	sum += buffer[pos];
+	pos++;
+	pos %=100;
+	return sum/100;
+}
+
+// 타이머가 리셋될 때 발생되는 인터럽트
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	sprintf(str, "%d\n", movingMean(adcValue[1]));
+	if(adcDone>0) adcDone--;
+
+}
+
+
+void app(){
+	//시리어 포트 초기화
+	initUart(&huart2);
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adcValue, 2);
+	HAL_TIM_Base_Start_IT(&htim3);
+
+	while(1){
+		if(adcDone == 0){
+			printf(str);
+			adcDone = 1;
+		}
+	}
+}

@@ -1,1 +1,4 @@
-../Core/Src/app.c:14:6:app	1
+../Core/Src/app.c:18:10:movingMean	3
+../Core/Src/app.c:40:8:Kalman	1
+../Core/Src/app.c:56:6:HAL_TIM_PeriodElapsedCallback	2
+../Core/Src/app.c:63:6:app	2

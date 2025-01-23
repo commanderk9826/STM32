@@ -1,1 +1,4 @@
-../Core/Src/app.c:14:6:app	16	static
+../Core/Src/app.c:18:10:movingMean	24	static
+../Core/Src/app.c:40:8:Kalman	24	static
+../Core/Src/app.c:56:6:HAL_TIM_PeriodElapsedCallback	32	static
+../Core/Src/app.c:63:6:app	8	static

@@ -1,7 +1,21 @@
-16:35:51 **** Incremental Build of configuration Debug for project cdsSensor ****
+16:33:08 **** Incremental Build of configuration Debug for project oled ****
 make -j7 all 
-arm-none-eabi-size  cdsSensor.elf 
+arm-none-eabi-gcc "../Core/Src/app.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/app.d" -MT"Core/Src/app.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/app.o"
+arm-none-eabi-gcc -o "oled.elf" @"objects.list"   -mcpu=cortex-m4 -T"/Users/ch.lee/STM32CubeIDE/workspace_1.17.0/oled/STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="oled.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: oled.elf
+ 
+arm-none-eabi-size  oled.elf 
+arm-none-eabi-objdump -h -S oled.elf  > "oled.list"
    text	   data	    bss	    dec	    hex	filename
-  14792	    104	   2056	  16952	   4238	cdsSensor.elf
+  13460	     20	   2772	  16252	   3f7c	oled.elf
+Finished building: default.size.stdout
+ 
+Finished building: oled.list
+ 
+16:33:10 **** Incremental Build of configuration Debug for project oled ****
+make -j7 all 
+arm-none-eabi-size  oled.elf 
+   text	   data	    bss	    dec	    hex	filename
+  13460	     20	   2772	  16252	   3f7c	oled.elf
 Finished building: default.size.stdout
  
