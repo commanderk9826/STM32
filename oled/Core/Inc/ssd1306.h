@@ -150,6 +150,8 @@ void ssd1306_ScrollLeft(uint8_t start_row, uint8_t end_row);
 void ssd1306_ScrollRight(uint8_t start_row, uint8_t end_row);
 void ssd1306_ScrollStop(void);
 void scrollLeftBySoft();
+void scrollRightBySoft();
+
 
 _END_STD_C
 

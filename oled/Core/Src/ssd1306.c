@@ -562,3 +562,11 @@ void scrollLeftBySoft() {
 	for(int page = 0; page < 8; page++)
 		SSD1306_Buffer[(page*128)+127] = 0;
 }
+
+void scrollRightBySoft() {
+	uint8_t tmp[1024];
+	memcpy(tmp, SSD1306_Buffer, 1024);
+	memcpy(&SSD1306_Buffer[1], tmp, 1023);
+	for(int page = 0; page < 8; page++)
+		SSD1306_Buffer[(page*128)+0] = 0;
+}

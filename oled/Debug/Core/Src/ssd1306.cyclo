@@ -25,3 +25,4 @@
 ../Core/Src/ssd1306.c:544:6:ssd1306_SetDisplayOn	2
 ../Core/Src/ssd1306.c:556:9:ssd1306_GetDisplayOn	1
 ../Core/Src/ssd1306.c:560:6:scrollLeftBySoft	2
+../Core/Src/ssd1306.c:566:6:scrollRightBySoft	2
