@@ -11,6 +11,7 @@
 	<item key="formatter_page.modify_dialog_tab_page.last_focus_index" value="3"/>
 	<item key="LastUsedSourceTemplate" value="Default C source template"/>
 	<item key="LastUsedHeaderTemplate" value="Default C header template"/>
+	<item key="org.eclipse.cdt.utils.ui.controls.FileListControl" value="../Drivers/CMSIS/DSP/Include"/>
 	<section name="completion_proposal_size">
 	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
@@ -24,5 +25,8 @@
 		<item key="DIALOG_WIDTH" value="425"/>
 		<item key="DIALOG_HEIGHT" value="380"/>
 		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+	</section>
+	<section name="OptionalMessageDialog.hide.">
+		<item key="askReindex.detail" value="0"/>
 	</section>
 </section>

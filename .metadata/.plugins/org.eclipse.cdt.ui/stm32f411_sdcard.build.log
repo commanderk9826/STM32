@@ -1,0 +1,10 @@
+11:59:04 **** Incremental Build of configuration Debug for project stm32f411_sdcard ****
+make -j7 all 
+arm-none-eabi-size  stm32f411_sdcard.elf 
+   text	   data	    bss	    dec	    hex	filename
+  38868	    128	  29160	  68156	  10a3c	stm32f411_sdcard.elf
+Finished building: default.size.stdout
+ 
+
+11:59:05 Build Finished. 0 errors, 0 warnings. (took 194ms)
+

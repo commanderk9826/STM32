@@ -1,0 +1,93 @@
+/*
+ * app.c
+ *
+ *  Created on: Jan 16, 2025
+ *      Author: user
+ */
+
+#include "app.h"
+
+// 외부 장치 선언
+extern TIM_HandleTypeDef	htim3;
+extern ADC_HandleTypeDef	hadc1;
+extern I2C_HandleTypeDef	hi2c1;
+
+#define SamplesFft		2048			// ad변환 횟수
+#define samplingRate	40000			// 초당 AD변환 개수
+uint16_t 	adcValue[SamplesFft];	// DMA로 변환된 ADC값이 저장되는 위치
+float32_t	input[SamplesFft];		// FFT로 입력될 값
+float32_t output[SamplesFft];		// FFT에서 출력된 값
+uint32_t	doConvert = SamplesFft;
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+	if(doConvert > 0) doConvert--;
+}
+
+void app() {
+	volatile uint16_t oldFrequency;
+	// OLED초기화
+	ssd1306_Init();
+	ssd1306_Fill(0);
+	// ADC 설정
+	HAL_ADC_Start_DMA(&hadc1, (uint32_t *)adcValue, SamplesFft);
+	// 타이머 시작
+	HAL_TIM_Base_Start_IT(&htim3);
+	// FFT 인스턴스 선언
+  arm_rfft_fast_instance_f32 fftInstance;
+  // FFT 초기화
+  arm_rfft_fast_init_f32(&fftInstance, SamplesFft);
+  while(1) {
+		if(doConvert == 0) {
+			doConvert = SamplesFft;
+
+			// float형으로 변환
+			for (int i = 0; i < SamplesFft; i++) {
+				input[i] = (float32_t) adcValue[i];
+			}
+
+			// 실제 FFT 연산
+			arm_rfft_fast_f32(&fftInstance, input, output, 0);
+
+			// 복소수 크기 계산
+			float32_t magnitude[SamplesFft / 2];
+			arm_cmplx_mag_f32(output, magnitude, SamplesFft / 2);
+
+			// 최�? 주파?�� 찾기
+			uint32_t maxIndex = 0;
+			float32_t maxValue = 0;
+			for (int i = 1; i < SamplesFft / 2; i++) { // FFT 결과?�� ?��반까�??????????????????????�?????????????????????? ?��?��
+				if(magnitude[i] > maxValue) {
+					maxValue = magnitude[i];
+					maxIndex = i;
+				}
+			}
+
+			// 주파?�� 계산
+			float frequency = maxIndex
+					* ((float) samplingRate / (float) SamplesFft);
+
+			uint32_t showData[128] = { 0, };
+			for (int i = 0; i < 128; i++) {
+				for (int j = 0; j < 8; j++) {
+					showData[i] += magnitude[i * 8 + j];
+				}
+				showData[i] /= 128;
+			}
+
+			ssd1306_Fill(0);
+			for (int i = 1; i < 128; i++) {
+				if(showData[i] > 63) showData[i] = 63;
+				ssd1306_Line(i, 63, i, 63 - showData[i], 1);
+			}
+			uint16_t freq = (uint16_t)frequency;
+			if((freq > 40) && (freq < 20000)) {
+				oldFrequency = freq;
+			}
+			char freqStr[20];
+			sprintf(freqStr, "%5d Hz", oldFrequency);
+			ssd1306_SetCursor(88, 0);
+			ssd1306_WriteString(freqStr, Font_6x8, 1);
+			ssd1306_UpdateScreen();
+		}
+  }
+}

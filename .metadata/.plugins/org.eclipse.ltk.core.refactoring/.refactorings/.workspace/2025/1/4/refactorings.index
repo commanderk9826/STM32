@@ -1,0 +1,6 @@
+1737767786869	Delete resource 'sdcard'
+1737767871960	Rename resource 'stm32_sdcard-main'
+1737770511180	Delete resource 'stm32f411_sdcard/Debug/Core/Src'
+1737777927796	Delete resource 'fft/Drivers/CMSIS/Lib'
+1737781755163	Delete resource 'fft/Core/Inc/uart.h'
+1737781758745	Delete resource 'fft/Core/Src/uart.c'

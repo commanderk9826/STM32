@@ -1,0 +1,50 @@
+/*
+ * app.c
+ *
+ *  Created on: Jan 16, 2025
+ *      Author: ch.lee
+ */
+
+#include "app.h"
+
+//외부 장치 선언
+extern TIM_HandleTypeDef htim3;
+extern ADC_HandleTypeDef hadc1;
+extern I2C_HandleTypeDef hi2c1;
+
+#define SamplesFft 2048 // ad변환 횟수
+#define sampleingRate 40000 // 초당 AD변환 개수
+uint16_t adcValue[SamplesFft]; // DMA로 변환된 ADC값이 저장되는 위치
+float32_t input[SamplesFft]; // FFT로 입력될 값
+float32_t outputput[SamplesFft]; // FFT에서 출력된 값
+uint32_t doConvert = SamplesFft;
+
+// 타이머가 리셋될 때 발생되는 인터럽트
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	if(doConvert > 0) doConvert--;
+
+}
+
+void app(){
+	//OLED 초기화
+	ssd1306_Init();
+	ssd1306_Fill(0);
+
+	//ADC 설정
+	HAL_ADC_Start_DMA(&hadc1, adcValue, SamplesFft);
+
+	//타이머 시
+	HAL_TIM_Base_Start_IT(&htim3);
+
+	// FFT 인스턴스 선언
+	arm_rfft_fast_instance_f32 fftInstance;
+
+	// FFT 초기화
+	arm_rfft_fast_init_f32(&fftInstance, SamplesFft);
+
+	while(1){
+		if(doConvert == 0)
+
+	}
+
+}
